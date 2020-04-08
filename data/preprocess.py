@@ -4,14 +4,11 @@ import numpy as np
 import pickle
 import re
 
-# Req. 3-1	이미지 경로 및 캡션 불러오기
 def get_path_caption():
     with open('configure.pkl', 'rb') as f:
         configure = pickle.load(f)
     return configure['img_dir_path'], configure['caption_file_path']
 
-
-# Req. 3-2	전체 데이터셋을 분리해 저장하기
 def dataset_split_save(cap_path):
     #image_cap_data, image_cap_test. idx로 구분.
     image_cap_list = []
@@ -99,15 +96,11 @@ def get_word_dict(data):
         
     return word_idx_dict, idx_word_dict, max_len
 
-    
-# Req. 3-3	저장된 데이터셋 불러오기
 def get_data_file(path):
     data = np.load(path+".npy")
     return np.split(data,2, axis=1)
 
 
-
-# Req. 3-4	데이터 샘플링
 def sampling_data(images, captions):
     idx = np.random.randint(len(images))
     return images[idx], captions[idx]
